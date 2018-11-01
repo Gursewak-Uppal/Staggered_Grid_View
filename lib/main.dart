@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:staggered_grid_view/full_screen_image_view.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 void main() => runApp(new MyApp());
@@ -15,7 +15,6 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.green,
       ),
       home: new MyHomePage(title: 'Flutter Demo Staggered Grid'),
-
     );
   }
 }
@@ -30,7 +29,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  List<String> imagesList =new List();
+  List<String> imagesList = new List();
 
   @override
   void initState() {
@@ -39,11 +38,13 @@ class _MyHomePageState extends State<MyHomePage> {
     imagesList.add(
         'https://upload.wikimedia.org/wikipedia/commons/b/b8/Pisgah_Home_Historic_District%2C_Highland_Park.JPG');
     imagesList.add(
+        'https://cdn.pixabay.com/photo/2013/07/12/15/55/cricket-150561_960_720.png');
+    imagesList.add(
         'https://cdn.pixabay.com/photo/2017/06/16/15/58/luxury-home-2409518_960_720.jpg');
     imagesList.add(
         'https://cdn12.picryl.com/photo/2016/12/31/classic-car-muscle-car-old-car-transportation-traffic-8d1a76-1024.jpg');
     imagesList.add(
-        'https://cdn.pixabay.com/photo/2013/07/12/15/55/cricket-150561_960_720.png');
+        'https://media-cdn.tripadvisor.com/media/photo-s/0a/12/dc/49/neta-ji-birthplace.jpg');
     imagesList
         .add('https://c1.staticflickr.com/8/7137/6918018132_5e183ee330_b.jpg');
     imagesList
@@ -54,8 +55,6 @@ class _MyHomePageState extends State<MyHomePage> {
         'https://upload.wikimedia.org/wikipedia/commons/4/4f/Wiffle_bat_and_ball.jpg');
     imagesList.add(
         'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-z8tFEhmsDpQtKAlk-uoV8ouoEY4Ll_pMZH-FDVspgY0VofY9ow');
-    imagesList.add(
-        'https://media-cdn.tripadvisor.com/media/photo-s/0a/12/dc/49/neta-ji-birthplace.jpg');
   }
 
   @override
@@ -76,7 +75,12 @@ class _MyHomePageState extends State<MyHomePage> {
                   borderRadius: new BorderRadius.all(new Radius.circular(8.0)),
                   child: new InkWell(
                     onTap: () {
-                      print('item clicked at position $j');
+                      Navigator.push(
+                          context,
+                          new MaterialPageRoute(
+                              builder: (context) =>
+                                  new FullScreenImageVew(imgPath)));
+                     // print('item clicked at position $j');
                     },
                     child: new FadeInImage(
                       placeholder: new AssetImage("images/loading.gif"),
